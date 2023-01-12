@@ -2,7 +2,6 @@ class ForecastsController < ApplicationController
   
   def show
     @address_default = "15303 NE 13th PL, Bellevue, Washington"
-    session[:address] = params[:address]
     if params[:address]
       begin
         @address = params[:address]
