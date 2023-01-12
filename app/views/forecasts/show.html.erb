@@ -1,0 +1,38 @@
+<% if @error_message.present? %>
+<div class="row error-message text-center">
+  <div class="col-6">
+    <% @error_message %>
+  </div>
+</div>
+<% end %>
+
+<div class="row text-center">
+  <div class="col-2">
+  </div>
+  <div class="col-6">
+    <h1>Forecast</h1>
+    <%= form_with(method: 'get', local: true) do %>
+      <%= label :address, "Enter Address", class: 'form-label' %><br>
+      <%= text_field_tag(:address, @address || @address_default, class: 'form-control') %><br>
+      <%= submit_tag "Check forecast", class: 'right-end' %>
+    <% end %>
+  </div>
+</div>
+
+<% if @weather.present? %>
+  <div class="row mt-3">
+    <div class="col-2">
+    </div>
+    <div class="col-6">
+      <ul>
+        <li><strong>Temperature:</strong> <%= @weather.temperature %>  °F</li>
+        <li><strong>Temperature Minimum:</strong> <%= @weather.temperature_min %> °F</li>
+        <li><strong>Temperature Maximum:</strong> <%= @weather.temperature_max %> °F</li>
+        <li><strong>Humidity:</strong> <%= @weather.humidity %>%</li>
+        <li><strong>Pressure:</strong> <%= @weather.pressure %> millibars</li>
+        <li><strong>Description:</strong> <%= @weather.description %></li>
+        <li><strong>Is forecase fetch from cache ?</strong> <%= @weather_cache_hit %>
+    </ul>
+    </div>
+  </div>
+<% end %>
